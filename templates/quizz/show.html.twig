@@ -1,1 +1,23 @@
-{{ quizz.title }}
+{% extends "base.html.twig" %}
+{% block body %}
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Quizz</h1>
+    <p><a>Quizz pour {{ title }} </a></p>
+  </div>
+  {% for form in forms %}
+    {{ form_start(form) }}
+     <div class="row">
+        <div class="col-12">
+        <h2>{{ form_widget(form.label) }}</h2>
+          {% for answer in form.answers %}
+            <div class="custom-control custom-checkbox">
+              <span class="custom-control-input" id="customCheck1">{{ form_widget(answer) }}</span>
+              <label class="custom-control-label" for="customCheck1">{{ form_label(answer) }}</label>
+            </div>
+          {% endfor %}
+          <button class="btn btn-primary btn-block" type="submit">save</button>
+        </div>
+      </div>
+    {{ form_end(form) }}
+  {% endfor %}
+{% endblock %}
